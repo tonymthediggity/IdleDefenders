@@ -7,6 +7,9 @@ public class BaseHP : MonoBehaviour {
     public float baseHP;
     public GameObject enemy;
     public EnemyAI enemyDamage;
+    public float enemyHealth;
+
+    public float clickDamage = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -18,18 +21,32 @@ public class BaseHP : MonoBehaviour {
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         enemyDamage = enemy.GetComponent<EnemyAI>();
 
+        
 
-		
-	}
+        
 
-    private void OnCollisionEnter(Collision collision)
+
+    }
+
+    void HurtEnemy()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        enemyHealth -= clickDamage;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Collider>().CompareTag("Enemy"))
         {
-            Debug.Log("Doing Damage");
             baseHP -= enemyDamage.damage;
         }
     }
 
-  
+
+
 }
+
+
+
+
+  
+
