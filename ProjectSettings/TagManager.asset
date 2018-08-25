@@ -4,9 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - BaseModule
   - Base
-  - Enemy
+  - BaseHealthManager
   - Spawner
+  - Enemy
+  - Money
+  - Collector
   layers:
   - Default
   - TransparentFX
@@ -16,7 +20,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - 
   - 
   - 
   - 

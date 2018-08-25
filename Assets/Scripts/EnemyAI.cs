@@ -7,26 +7,43 @@ public class EnemyAI : MonoBehaviour {
    
 
     public Rigidbody myBody;
+
     public Vector3 basePos;
     public GameObject playerBase;
+
+    public float baseCurrentHp;
+
+    public BaseHealthManager pauseChecker;
+
+
 
     public GameObject spawnedEnemyArray;
 
 
     public float enemyHealth;
 
-    
 
-    public float damage;
+
+    public float damage = 10;
 
     public float speed;
+
+    public GameObject moneyPrefab;
+
+
+   
+
+    
+
+   
 
 	// Use this for initialization
 	void Start () {
 
         myBody = GetComponent<Rigidbody>();
-        playerBase = GameObject.FindGameObjectWithTag("Base");
-        basePos = playerBase.transform.position;
+       
+
+        
       
 
         
@@ -35,12 +52,28 @@ public class EnemyAI : MonoBehaviour {
 		
 	}
 
+    private void Awake()
+    {
+        pauseChecker = GameObject.FindGameObjectWithTag("BaseHealthManager").GetComponent<BaseHealthManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
 
         transform.LookAt(basePos);
         myBody.AddForce(transform.forward * speed);
+
+        if(pauseChecker.isPaused == true)
+        {
+            myBody.Sleep();
+        }
+        else
+        {
+            myBody.WakeUp();
+        }
+
+    
 
         spawnedEnemyArray = GameObject.FindGameObjectWithTag("Spawner").GetComponent<SpawnEnemy>().spawnedEnemies[0];
 
@@ -55,6 +88,12 @@ public class EnemyAI : MonoBehaviour {
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    GameObject moneyClone;
+                    moneyClone = Instantiate(moneyPrefab, hit.transform.position, hit.transform.rotation) as GameObject;
+                    moneyClone.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+
+                    
+                    
                     
                     Destroy(hit.collider.gameObject);
                 }
@@ -65,11 +104,13 @@ public class EnemyAI : MonoBehaviour {
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter (Collider collision)
     {
         if (collision.gameObject.CompareTag("Base"))
         {
-            Destroy(GameObject.Find("Enemy(Clone)"));
+
+           
+            Destroy(gameObject, 0.02f);
         }
     }
 }
