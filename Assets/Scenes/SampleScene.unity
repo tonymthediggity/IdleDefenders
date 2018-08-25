@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -121,6 +121,11 @@ Transform:
 --- !u!1 &62722427 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1197475368254750, guid: ec8effb50cf7d764bba0253a779fee91,
+    type: 2}
+  m_PrefabInternal: {fileID: 362796613}
+--- !u!4 &62722429 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4491003525001310, guid: ec8effb50cf7d764bba0253a779fee91,
     type: 2}
   m_PrefabInternal: {fileID: 362796613}
 --- !u!114 &62722430
@@ -273,7 +278,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &181473798
 GameObject:
@@ -427,27 +432,27 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 993151911}
     m_Modifications:
     - target: {fileID: 4491003525001310, guid: ec8effb50cf7d764bba0253a779fee91, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.77
+      value: 0.769989
       objectReference: {fileID: 0}
     - target: {fileID: 4491003525001310, guid: ec8effb50cf7d764bba0253a779fee91, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.47
+      value: 1.4700012
       objectReference: {fileID: 0}
     - target: {fileID: 4491003525001310, guid: ec8effb50cf7d764bba0253a779fee91, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.18
+      value: 0.1800003
       objectReference: {fileID: 0}
     - target: {fileID: 4491003525001310, guid: ec8effb50cf7d764bba0253a779fee91, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4491003525001310, guid: ec8effb50cf7d764bba0253a779fee91, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4491003525001310, guid: ec8effb50cf7d764bba0253a779fee91, type: 2}
       propertyPath: m_LocalRotation.z
@@ -459,7 +464,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4491003525001310, guid: ec8effb50cf7d764bba0253a779fee91, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1197475368254750, guid: ec8effb50cf7d764bba0253a779fee91, type: 2}
       propertyPath: m_Name
@@ -872,7 +877,7 @@ RectTransform:
   - {fileID: 1780500403}
   - {fileID: 2010810850}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -908,7 +913,7 @@ Transform:
   m_Children:
   - {fileID: 411362733}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &494230292
 MonoBehaviour:
@@ -1503,8 +1508,8 @@ MonoBehaviour:
   baseObject: {fileID: 0}
   healthBarFill: {fileID: 1428124743}
   gameOverPanel: {fileID: 407736120}
-  money: 0
-  collectorObj: {fileID: 0}
+  money: 600
+  collectorObjParent: {fileID: 0}
   collectorMoney: 0
   moneyText: {fileID: 1780500404}
   healthTextAbove50: {fileID: 1109039911}
@@ -1522,7 +1527,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &793658260
 GameObject:
@@ -1628,7 +1633,7 @@ Transform:
   - {fileID: 1066116670}
   - {fileID: 1560873039}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &954470859
 GameObject:
@@ -1748,6 +1753,35 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c237905690cfb746979ed1327f1b218, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &993151910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 993151911}
+  m_Layer: 0
+  m_Name: CollectorParent
+  m_TagString: CollectorParent
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &993151911
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 993151910}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 62722429}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035858663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,7 +2659,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1876216944}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679955519}
+        m_MethodName: BuyCollector
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1876216944
@@ -2721,7 +2766,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1985557625
 GameObject:
@@ -2883,7 +2928,7 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2010810849
 GameObject:

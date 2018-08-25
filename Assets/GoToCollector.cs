@@ -8,6 +8,8 @@ public class GoToCollector : MonoBehaviour {
     public Rigidbody myBody;
     public float speed;
 
+    public CapsuleCollider myCollider;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,16 +17,34 @@ public class GoToCollector : MonoBehaviour {
 
     private void Awake()
     {
-        collectorPos = GameObject.FindGameObjectWithTag("Collector").transform;
+
+
+
         myBody = GetComponent<Rigidbody>();
+
+        myCollider = GetComponent<CapsuleCollider>();
+        myCollider.isTrigger = false;
+
+
+
+       
+        collectorPos = GameObject.FindGameObjectWithTag("Collector").transform;
+        myBody.AddForce(transform.forward * speed);
+
     }
 
     // Update is called once per frame
     void Update () {
         if (collectorPos != null)
-        {
+       {
             myBody.transform.LookAt(collectorPos);
-            myBody.AddForce(transform.forward * speed);
+
+            myCollider.isTrigger = true;
+
+            myBody.AddForce(collectorPos.transform.position * speed);
+            
+
+
         }
 
 

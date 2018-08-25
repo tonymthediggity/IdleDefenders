@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Money
   - Collector
+  - CollectorParent
   layers:
   - Default
   - TransparentFX

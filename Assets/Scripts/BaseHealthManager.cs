@@ -14,7 +14,7 @@ public class BaseHealthManager : MonoBehaviour {
     public GameObject gameOverPanel;
 
     public int money;
-    public GameObject collectorObj;
+    public GameObject collectorObjParent;
     public int collectorMoney;
 
 
@@ -35,13 +35,15 @@ public class BaseHealthManager : MonoBehaviour {
 
         baseHealthStat = baseMaxHealth;
 
+        moneyText.text = money.ToString();
+
         isPaused = false;
 
         pausePanel.SetActive(false);
 
-        collectorObj = GameObject.FindGameObjectWithTag("Collector");
+        collectorObjParent = GameObject.FindGameObjectWithTag("CollectorParent");
 
-        collectorMoney = collectorObj.GetComponent<Collector>().moneyCollected;
+        collectorMoney = collectorObjParent.GetComponentInChildren<Collector>().moneyCollected;
 
 
 
@@ -55,7 +57,7 @@ public class BaseHealthManager : MonoBehaviour {
 
        
 
-            collectorMoney = collectorObj.GetComponent<Collector>().moneyCollected;
+            
         
 
         if (baseHealthStat > 50)
@@ -83,7 +85,7 @@ public class BaseHealthManager : MonoBehaviour {
             {
                 if (hit.collider.CompareTag("Money"))
                 {
-
+                   
                     money += Random.Range(1, 25);
 
                     Destroy(hit.collider.gameObject);
@@ -105,7 +107,7 @@ public class BaseHealthManager : MonoBehaviour {
                 if (hit.collider.CompareTag("BaseModule"))
                 {
                     money += collectorMoney;
-                    collectorObj.GetComponent<Collector>().moneyCollected = 0;
+                    collectorObjParent.GetComponentInChildren<Collector>().moneyCollected = 0;
 
                    
                 }
@@ -132,7 +134,13 @@ public class BaseHealthManager : MonoBehaviour {
 
         }
 
-       
+        collectorObjParent = GameObject.FindGameObjectWithTag("CollectorParent");
+
+        collectorMoney = collectorObjParent.GetComponentInChildren<Collector>().moneyCollected;
+
+        collectorMoney = collectorObjParent.GetComponentInChildren<Collector>().moneyCollected;
+
+
 
 
 
@@ -180,7 +188,9 @@ public class BaseHealthManager : MonoBehaviour {
 
     public void BuyCollector()
     {
-
+        money -= 500;
+        collectorObjParent.transform.GetChild(0).gameObject.SetActive(true);
+        Debug.Log(collectorObjParent.name + "is now active");
     }
 
 }
