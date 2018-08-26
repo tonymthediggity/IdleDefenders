@@ -46,9 +46,11 @@ public class BaseHP : MonoBehaviour {
     public void OnTriggerEnter(Collider other)
     {
 
-        
-        
-        baseHealthScript.baseHealthStat -= other.GetComponent<EnemyAI>().damage;
+
+        if (other.CompareTag("Enemy"))
+        {
+            baseHealthScript.baseHealthStat -= other.GetComponent<EnemyAI>().damage;
+        }
 
     }
 

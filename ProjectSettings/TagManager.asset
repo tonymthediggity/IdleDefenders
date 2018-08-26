@@ -12,6 +12,10 @@ TagManager:
   - Money
   - Collector
   - CollectorParent
+  - FirePointPosition
+  - enemy
+  - Bullet
+  - TurretButtonText
   layers:
   - Default
   - TransparentFX

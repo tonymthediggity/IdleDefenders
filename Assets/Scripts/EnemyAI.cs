@@ -112,5 +112,17 @@ public class EnemyAI : MonoBehaviour {
            
             Destroy(gameObject, 0.02f);
         }
+
+        
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            GameObject moneyClone;
+            moneyClone = Instantiate(moneyPrefab, transform.position, transform.rotation) as GameObject;
+            moneyClone.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        }
     }
 }

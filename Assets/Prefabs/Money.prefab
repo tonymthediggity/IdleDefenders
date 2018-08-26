@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 54094549966817718}
   - component: {fileID: 114170367058893974}
   - component: {fileID: 114979692848816932}
+  - component: {fileID: 114303159947047688}
+  - component: {fileID: 114185062999702886}
   m_Layer: 0
   m_Name: Money
   m_TagString: Money
@@ -114,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyDespawnTimer: 5
---- !u!114 &114979692848816932
+--- !u!114 &114185062999702886
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -122,12 +124,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 1433529401465178}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091bb2adab7dcaf4ca6ec7f7c47ed1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectorParent: {fileID: 0}
+  collectorObj: {fileID: 0}
+--- !u!114 &114303159947047688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433529401465178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127a28fa750dc404ab5c1687e630c554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectorParent: {fileID: 0}
+  collectorPosition: {fileID: 0}
+  myBody: {fileID: 0}
+  myCollider: {fileID: 0}
+  speed: 2
+--- !u!114 &114979692848816932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433529401465178}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bff08f65435812b44a4b56d10d21d462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collectorPos: {fileID: 0}
   myBody: {fileID: 0}
   speed: 0.5
+  myCollider: {fileID: 0}
 --- !u!136 &136024678618587642
 CapsuleCollider:
   m_ObjectHideFlags: 1
