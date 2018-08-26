@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour {
 
         currentEnemyToSpawn = enemyPrefabs[index];
 
-        print(currentEnemyToSpawn.name);
+       
 
         
 		

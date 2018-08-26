@@ -27,7 +27,7 @@ public class SpawnEnemy : MonoBehaviour {
 
         currentEnemyToSpawn = enemyPrefabs[index];
 
-        print(currentEnemyToSpawn.name);
+        
 
         
 		
@@ -61,7 +61,7 @@ public class SpawnEnemy : MonoBehaviour {
 
     void Spawn()
     {
-        
-       enemyClone = Instantiate(enemyPrefabs[index], transform.position, transform.rotation);
+
+        enemyClone = Instantiate(enemyPrefabs[index], transform.position, transform.rotation) as GameObject;
     }
 }

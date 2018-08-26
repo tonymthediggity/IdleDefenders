@@ -16,6 +16,7 @@ public class BaseHealthManager : MonoBehaviour {
     public float money;
     public GameObject collectorObjParent;
     public int collectorMoney;
+    public int collectorCost;
 
 
     public Text moneyText;
@@ -164,7 +165,7 @@ public class BaseHealthManager : MonoBehaviour {
 
                 
             {
-                if (hit.collider.CompareTag("BaseModule"))
+                if (hit.collider.CompareTag("Base"))
                 {
                     money += collectorMoney;
                     collectorObjParent.GetComponentInChildren<Collector>().moneyCollected = 0;
@@ -177,21 +178,7 @@ public class BaseHealthManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 
-            if (!isPaused)
-            {
-                
-                pausePanel.SetActive(true);
-                Time.timeScale = 0;
-                
-
-                isPaused = true;
-            }
-            else
-            {
-                pausePanel.SetActive(false);
-                Time.timeScale = 1;
-                isPaused = false;
-            }
+            PauseGame();
 
 
         }
@@ -279,11 +266,45 @@ public class BaseHealthManager : MonoBehaviour {
 
     public void BuyCollector()
     {
-        money -= 500;
+        if (money >= collectorCost)
+        {
+            collectorObjParent.transform.GetChild(0).gameObject.SetActive(true);
+            hasCollector = true;
+            money -= collectorCost;
+            
+        }
 
-        hasCollector = true;
-        collectorObjParent.transform.GetChild(0).gameObject.SetActive(true);
-        Debug.Log(collectorObjParent.name + "is now active");
+        if (money < collectorCost)
+        {
+            
+
+
+
+            shopErrorText.text = "Insufficient Funds";
+
+        }
+
+        
+        
+        
+    }
+    public void PauseGame()
+    {
+        if (!isPaused)
+        {
+
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
+
+
+            isPaused = true;
+        }
+        else
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1;
+            isPaused = false;
+        }
     }
 
 }
