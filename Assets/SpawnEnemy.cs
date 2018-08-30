@@ -10,7 +10,6 @@ public class SpawnEnemy : MonoBehaviour {
 
     public GameObject enemyClone;
 
-    public GameObject[] spawnedEnemies;
 
     public float timeTilSpawn;
 
@@ -46,9 +45,7 @@ public class SpawnEnemy : MonoBehaviour {
             ResetSpawnTimer();
             
         }
-
-        spawnedEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-
+        
 
 
 

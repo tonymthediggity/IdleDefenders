@@ -7,6 +7,11 @@ public class EnemyAI : MonoBehaviour {
    
 
     public Rigidbody myBody;
+    public GameObject myBodyGraphics;
+    public Collider sphereCollider;
+    public GameObject afterBurner;
+
+    public EnemyAI mainScript;
 
     public Vector3 basePos;
     public GameObject playerBase;
@@ -14,6 +19,10 @@ public class EnemyAI : MonoBehaviour {
     public float baseCurrentHp;
 
     public BaseHealthManager pauseChecker;
+
+    public ParticleSystem explosionThing;
+
+    
 
 
 
@@ -24,23 +33,34 @@ public class EnemyAI : MonoBehaviour {
 
 
 
-    public float damage = 10;
+    public float damage;
 
     public float speed;
 
     public GameObject moneyPrefab;
+    public GameObject healthPickupPrefab;
+
+    public int dropChance;
 
 
-   
 
-    
 
-   
 
-	// Use this for initialization
-	void Start () {
+
+
+
+    // Use this for initialization
+    void Start () {
 
         myBody = GetComponent<Rigidbody>();
+        damage = Random.Range(1, 20);
+
+        explosionThing = GameObject.FindObjectOfType<ParticleSystem>();
+        sphereCollider = GetComponent<Collider>();
+        mainScript = GetComponent<EnemyAI>();
+
+        
+      
        
 
         
@@ -55,6 +75,11 @@ public class EnemyAI : MonoBehaviour {
     private void Awake()
     {
         pauseChecker = GameObject.FindGameObjectWithTag("BaseHealthManager").GetComponent<BaseHealthManager>();
+        speed = (Random.Range(0.33f, 1.2f) * pauseChecker.waveNumber) * .44f;
+
+        dropChance = Random.Range(1, 10);
+        
+       
     }
 
     // Update is called once per frame
@@ -75,9 +100,9 @@ public class EnemyAI : MonoBehaviour {
 
     
 
-        spawnedEnemyArray = GameObject.FindGameObjectWithTag("Spawner").GetComponent<SpawnEnemy>().spawnedEnemies[0];
 
-        if (Input.GetMouseButtonDown(0))
+
+      /*  if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -86,21 +111,35 @@ public class EnemyAI : MonoBehaviour {
 
                 Debug.Log("Hit" + hit.collider.gameObject.name);
             {
-                if (hit.collider.CompareTag("Enemy"))
+                if (hit.collider.gameObject.tag == "Enemy") ;
                 {
-                    GameObject moneyClone;
-                    moneyClone = Instantiate(moneyPrefab, hit.transform.position, hit.transform.rotation) as GameObject;
-                    moneyClone.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 
-                    
-                    
-                    
-                    Destroy(hit.collider.gameObject);
+                    enemyHealth -= pauseChecker.clickDamage;
+
+
+                    if (GetComponent<EnemyAI>().enemyHealth <= 0)
+                    {
+
+                        GameObject moneyClone;
+                        moneyClone = Instantiate(moneyPrefab, transform.position, transform.rotation) as GameObject;
+                        moneyClone.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+
+
+
+
+                        Destroy(gameObject);
+
+
+
+
+                    }
                 }
-            }
         }
 
         
+        }*/
+
+
 
     }
 
@@ -116,6 +155,50 @@ public class EnemyAI : MonoBehaviour {
         
     }
 
+    private void OnMouseDown()
+    {
+
+
+
+        enemyHealth -= pauseChecker.clickDamage;
+
+
+        if (GetComponent<EnemyAI>().enemyHealth <= 0)
+        {
+            if (dropChance >=2)
+            {
+                mainScript.enabled = false;
+                GameObject moneyClone;
+                moneyClone = Instantiate(moneyPrefab, transform.position, transform.rotation) as GameObject;
+                moneyClone.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+
+                myBodyGraphics.SetActive(false);
+                sphereCollider.enabled = false;
+                afterBurner.SetActive(false);
+                explosionThing.Play();
+
+
+                Destroy(gameObject, 2);
+            }
+
+            if(dropChance <= 1)
+            {
+
+                mainScript.enabled = false;
+                GameObject healthPickupClone;
+                healthPickupClone = Instantiate(healthPickupPrefab, transform.position, Quaternion.Euler(90, 0, 0)) as GameObject;
+                healthPickupClone.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+
+                myBodyGraphics.SetActive(false);
+                sphereCollider.enabled = false;
+                afterBurner.SetActive(false);
+                explosionThing.Play();
+                Destroy(gameObject, 2);
+            }
+        }
+
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Bullet"))
@@ -123,6 +206,12 @@ public class EnemyAI : MonoBehaviour {
             GameObject moneyClone;
             moneyClone = Instantiate(moneyPrefab, transform.position, transform.rotation) as GameObject;
             moneyClone.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+
+            Destroy(gameObject);
+
+
+
+
         }
     }
 }

@@ -16,6 +16,8 @@ TagManager:
   - enemy
   - Bullet
   - TurretButtonText
+  - Health
+  - HealthError
   layers:
   - Default
   - TransparentFX

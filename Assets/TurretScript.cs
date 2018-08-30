@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurretScript : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class TurretScript : MonoBehaviour
 
     public GameObject bulletPrefab;
     public float fireRate;
+    public Slider turretFireTimerSlider;
     public float defaultFireRate;
 
     public float bulletSpeed;
@@ -25,12 +27,13 @@ public class TurretScript : MonoBehaviour
 
 
 
+
+
     // Use this for initialization
     void Start()
     {
 
-
-
+        
     }
 
     public void Awake()
@@ -122,6 +125,10 @@ public class TurretScript : MonoBehaviour
        // Destroy(bulletClone);
         
     }
+
+   
+
+
 
 
 }

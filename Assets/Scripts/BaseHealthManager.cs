@@ -8,7 +8,21 @@ public class BaseHealthManager : MonoBehaviour {
 
     public float baseHealthStat;
     public float baseMaxHealth;
+
+    public float healthUpgradeCost;
+    public float healthUpgradeAmount;
+    public Text healthUpgradeText;
+
+
+    public float clickDamage;
+    public Text clickDamageText;
+
+
     public GameObject baseObject;
+
+    public float defaultWaveTimer;
+    public float currentWaveTimer;
+    public float waveNumber;
 
     public Image healthBarFill;
     public GameObject gameOverPanel;
@@ -41,7 +55,11 @@ public class BaseHealthManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        
+        currentWaveTimer = defaultWaveTimer;
+
+        clickDamageText.text = clickDamage.ToString();
+
+
 
         baseObject = GameObject.FindGameObjectWithTag("Base");
         gameOverPanel.SetActive(false);
@@ -75,9 +93,23 @@ public class BaseHealthManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(baseHealthStat > baseMaxHealth)
+        {
+            baseHealthStat = baseMaxHealth;
+          
+        }
+
+        currentWaveTimer -= Time.deltaTime;
+        if(currentWaveTimer <= 0)
+        {
+            waveNumber++;
+            currentWaveTimer = defaultWaveTimer;
+        }
+
         moneyText.text = money.ToString();
 
         turretButtonText.text = "Buy Turret (" + turretCost.ToString() + ")";
+        healthUpgradeText.text = "+" + healthUpgradeAmount.ToString() + " Max Health (" + healthUpgradeCost.ToString() + ")";
 
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
 
@@ -147,7 +179,7 @@ public class BaseHealthManager : MonoBehaviour {
                 if (hit.collider.CompareTag("Money"))
                 {
                    
-                    money += Random.Range(1, 25);
+                    money += Random.Range(1, 25) * 2;
 
                     Destroy(hit.collider.gameObject);
                 }
@@ -288,6 +320,28 @@ public class BaseHealthManager : MonoBehaviour {
         
         
     }
+
+    public void BuyMaxHealth()
+    {
+        if (money >= healthUpgradeCost)
+        {
+            baseMaxHealth += healthUpgradeAmount;
+            money -= healthUpgradeCost;
+            healthUpgradeCost = healthUpgradeCost * 1.2f;
+        }
+
+        if (money < turretCost)
+        {
+            float timeToDisplayError = 2;
+            timeToDisplayError -= Time.deltaTime;
+
+
+
+            shopErrorText.text = "Insufficient Funds";
+
+        }
+    }
+
     public void PauseGame()
     {
         if (!isPaused)
